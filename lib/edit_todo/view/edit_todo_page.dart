@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_todos/bootstrap.dart';
-import 'package:flutter_todos/edit_todo/riverpod/edit_todo_notifier.dart';
-
 import 'package:flutter_todos/edit_todo/riverpod/edit_todo_state.dart';
 import 'package:flutter_todos/l10n/l10n.dart';
 import 'package:todos_repository/todos_repository.dart';
 
+import '../riverpod/edit_todo_notifier.dart';
+
 class EditTodoPage extends ConsumerWidget {
-  const EditTodoPage({super.key, this.initialTodo});
+  const EditTodoPage({Key? key, this.initialTodo}) : super(key: key);
 
   final Todo? initialTodo;
-
-  static Route<void> route({Todo? initialTodo}) => MaterialPageRoute(
-        fullscreenDialog: true,
-        builder: (context) => ProviderScope(
-          overrides: [
-            editTodoNotifierProvider.overrideWith(
-              (ref) => EditTodoNotifier(
-                ref.read(todosRepositoryProvider),
-                initialTodo,
-              ),
-            ),
-          ],
-          child: EditTodoPage(initialTodo: initialTodo),
+static Route<void> route({Todo? initialTodo}) => MaterialPageRoute(
+  fullscreenDialog: true,
+  builder: (context) => ProviderScope(
+    overrides: [
+      editTodoNotifierProvider.overrideWith(
+        (ref) => EditTodoNotifier(
+          todosRepository: ref.read<TodosRepository>(),
+          initialTodo: initialTodo,
         ),
-      );
+      ),
+    ],
+    child: const EditTodoPage(),
+  ),
+);
+
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -70,13 +69,12 @@ class EditTodoPage extends ConsumerWidget {
 }
 
 class EditTodoView extends ConsumerWidget {
-  const EditTodoView({super.key, this.initialTodo});
+  const EditTodoView({Key? key, this.initialTodo}) : super(key: key);
 
   final Todo? initialTodo;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // TODO: Refactor, not efficacious.
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(16),

@@ -8,6 +8,11 @@ extension EditTodoStatusX on EditTodoStatus {
 }
 
 class EditTodoState {
+  final EditTodoStatus status;
+  final Todo? initialTodo;
+  final String title;
+  final String description;
+
   const EditTodoState({
     this.status = EditTodoStatus.initial,
     this.initialTodo,
@@ -15,23 +20,17 @@ class EditTodoState {
     this.description = '',
   });
 
-  final EditTodoStatus status;
-  final Todo? initialTodo;
-  final String title;
-  final String description;
-
-  bool get isNewTodo => initialTodo == null;
-
   EditTodoState copyWith({
     EditTodoStatus? status,
     Todo? initialTodo,
     String? title,
     String? description,
-  }) =>
-      EditTodoState(
-        status: status ?? this.status,
-        initialTodo: initialTodo ?? this.initialTodo,
-        title: title ?? this.title,
-        description: description ?? this.description,
-      );
+  }) {
+    return EditTodoState(
+      status: status ?? this.status,
+      initialTodo: initialTodo ?? this.initialTodo,
+      title: title ?? this.title,
+      description: description ?? this.description,
+    );
+  }
 }

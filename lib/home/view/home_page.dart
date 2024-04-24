@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_todos/edit_todo/edit_todo.dart';
+import 'package:flutter_todos/edit_todo/view/edit_todo_page.dart';
 import 'package:flutter_todos/home/riverpod/home_notifier.dart';
 import 'package:flutter_todos/home/riverpod/home_state.dart';
 import 'package:flutter_todos/stats/view/stats_page.dart';

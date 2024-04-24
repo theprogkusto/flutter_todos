@@ -21,12 +21,15 @@ dependencies:
   local_storage_todos_api:
     path: packages/local_storage_todos_api
   riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+  build_runner: 
   riverpod_generator: ^2.4.0
   todos_api:
     path: packages/todos_api
   todos_repository:
     path: packages/todos_repository
   uuid: ^3.0.7
+  riverpod_lint: ^2.3.10
 
 dev_dependencies:
   # Testing
